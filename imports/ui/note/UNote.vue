@@ -10,7 +10,7 @@
                 /> 
                 {{note.note}}
             </span>
-            <span class="float-right"><button class="btn btn-danger" v-on:click="deleteNote(note._id)">x</button></span>
+            <span class="float-right"><button class="btn btn-success" v-on:click="unDeleteNote(note._id)">v</button></span>
         </div>
     </div>
 </template>
@@ -24,8 +24,8 @@ export default {
         }
     },
     methods: {
-        deleteNote(nodeId) {
-            Meteor.call('notes.delete', nodeId);
+        unDeleteNote(nodeId) {
+            Meteor.call('notes.undelete', nodeId);
         },
         toggleChecked(){
             Meteor.call('notes.setIsChecked', this.note._id, !this.note.isChecked);

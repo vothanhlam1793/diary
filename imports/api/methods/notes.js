@@ -6,6 +6,22 @@ Meteor.methods({
         check(obj, Object);
         NotesCollection.insert(obj);
     },
+    'notes.delete'(nodeId){
+        check(nodeId, String);
+        NotesCollection.update(nodeId, {
+           $set: {
+               delete: true
+           } 
+        });
+    },
+    'notes.undelete'(nodeId){
+        check(nodeId, String);
+        NotesCollection.update(nodeId, {
+           $set: {
+               delete: false
+           } 
+        });
+    },
     'notes.remove'(noteId){
         check(noteId, String);
         NotesCollection.remove(noteId);

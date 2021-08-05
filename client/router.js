@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 import MainBoard from "../imports/ui/note/Main.vue"
+import UndeleteNote from "../imports/ui/note/UnDelete.vue"
 import NotFound from '../imports/ui/NotFound.vue'
 import MainDiary from '../imports/ui/diary/Main.vue'
 import MainTask from '../imports/ui/task/Main.vue'
@@ -37,6 +38,11 @@ const routes = [
         name: 'task',
         component: CreateTask
     },
+    {
+        path: '/undeletenote',
+        name: 'undeletenote',
+        component: UndeleteNote
+    }
 ]
 
 const router = new VueRouter({

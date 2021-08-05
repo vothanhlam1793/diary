@@ -1,11 +1,11 @@
 <template>
     <div>
-        <div class="clearfix alert alert-success">
+        <div class="clearfix alert alert-danger">
             <span class="float-left">
-                <h3 >NOTE</h3>
+                <h3>DELETE NOTE</h3>
             </span>
             <span class="float-right">
-                <router-link class="btn btn-warning" to="/undeletenote">Note đã xóa</router-link>
+                <router-link class="btn btn-warning" to="/">Note</router-link>
             </span>
         </div>
         <div>
@@ -14,14 +14,11 @@
                 v-bind:note="note"
             />
         </div>
-        <div>
-            <CreateNote/>
-        </div>
     </div>
 </template>
 <script>
 import CreateNote from "./Create.vue"
-import Note from "./Note.vue"
+import Note from "./UNote.vue"
 import {NotesCollection} from "../../api/collections/Notes"
 export default {
     components: {
@@ -38,7 +35,7 @@ export default {
             'notes': []
         },
         notes(){
-            return NotesCollection.find({ delete: { $ne: true }}).fetch();
+            return NotesCollection.find({ delete: { $eq: true }}).fetch();
         }
     }
 }
