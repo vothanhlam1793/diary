@@ -13,6 +13,7 @@
                 v-for="note in notes"
                 v-bind:note="note"
             />
+            <hr>
         </div>
         <div>
             <CreateNote/>

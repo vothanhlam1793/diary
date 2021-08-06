@@ -3,10 +3,30 @@
         <div class="alert alert-success">
             <h4>Tạo công việc</h4>
         </div>
-        <form @submit.prevent="handleSubmit">
+        <div >
             <div class="form-group">
-                <label for="content">Nội dung:</label>
+                <label for="content">Mô tả:</label>
                 <input type="text" class="form-control" placeholder="Mình muốn làm" id="content" v-model="content">
+            </div>
+            <div class="form-group">
+                <label>To Do List</label>
+                <div class="ml-3 mr-2">
+                    <Job
+                        v-for="job, index in jobs"
+                        v-bind:job="job"
+                        v-bind:jobs="jobs"
+                        v-bind:index="index"
+                    />
+                    <hr>
+                    <div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Công việc con" v-model="job" @keypress.enter="addJob()">
+                            <div class="input-group-append">
+                                <button class="btn btn-warning" type="button" @click="addJob()">Tạo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="deadline">Deadline:</label>
@@ -48,20 +68,27 @@
                 </table>
             </div>
             <div class="form-group text-center">
-                <button class="btn btn-success">Tạo</button>
+                <button class="btn btn-success" @click="handleSubmit">Tạo</button>
             </div>
-        </form>
+        </div>
     </div>
 </template>
 <script>
+import Job from "./ToDo"
 export default {
+    components: {
+        Job
+    },
     data(){
         return {
             content: "",
             estimate: 30,
             important: "false",
             urgent: "false",
-            deadline: (new Date((new Date()).getTime() + 86400*1000)).toISOString().split("T")[0]
+            deadline: (new Date((new Date()).getTime() + 86400*1000)).toISOString().split("T")[0],
+            jobs: [
+            ],
+            job: ""
         }
     },
     methods: {
@@ -76,13 +103,20 @@ export default {
                 important: this.important,
                 urgent: this.urgent,
                 deadline: this.deadline,
-                estimate: this.estimate
+                estimate: this.estimate,
+                jobs: this.jobs
             }
             console.log(obj);
             Meteor.call("tasks.insert", obj, function(e,s){
                 location.href = "/#/task"
             });
 
+        },
+        addJob(){
+            this.jobs.push({
+                content: this.job
+            });
+            this.job = "";
         }
     }
 }
