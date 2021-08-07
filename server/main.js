@@ -7,3 +7,6 @@ import '../imports/api/publications/notes'
 
 import '../imports/api/methods/tasks'
 import '../imports/api/publications/tasks'
+
+import '../imports/api/methods/diary'
+import '../imports/api/publications/diary'

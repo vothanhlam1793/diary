@@ -9,6 +9,7 @@ import NotFound from '../imports/ui/NotFound.vue'
 import MainDiary from '../imports/ui/diary/Main.vue'
 import MainTask from '../imports/ui/task/Main.vue'
 import CreateTask from '../imports/ui/task/Create.vue'
+import CreateDiary from '../imports/ui/diary/Create.vue'
 
 Vue.use(VueRouter)
 
@@ -42,7 +43,12 @@ const routes = [
         path: '/undeletenote',
         name: 'undeletenote',
         component: UndeleteNote
-    }
+    },
+    {
+        path: '/createDiary',
+        name: 'creatDiary',
+        component: CreateDiary
+    },
 ]
 
 const router = new VueRouter({
