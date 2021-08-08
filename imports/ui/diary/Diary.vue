@@ -8,6 +8,9 @@
 
             </div>
         </div>
+        <div>
+            <router-link class="btn btn-warning" :to="'/editDiary/' + diary._id">Edit</router-link>
+        </div>
     </div>
 </template>
 <script>

@@ -10,7 +10,7 @@ import MainDiary from '../imports/ui/diary/Main.vue'
 import MainTask from '../imports/ui/task/Main.vue'
 import CreateTask from '../imports/ui/task/Create.vue'
 import CreateDiary from '../imports/ui/diary/Create.vue'
-
+import EditDiary from "../imports/ui/diary/Edit.vue"
 Vue.use(VueRouter)
 
 const routes = [
@@ -48,6 +48,11 @@ const routes = [
         path: '/createDiary',
         name: 'creatDiary',
         component: CreateDiary
+    },
+    {
+        path: '/editDiary/:id',
+        name: 'editdiary',
+        component: EditDiary
     },
 ]
 

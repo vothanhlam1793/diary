@@ -61,14 +61,15 @@
     </div>
 </template>
 <script>
-
+import {DiaryCollection} from '../../api/collections/Diary'
 export default {
     components: {
 
     },
     data(){
         return {
-            title: ""
+            title: "",
+            content: ""
         }
     },
     methods: {
@@ -78,13 +79,22 @@ export default {
                 content: jQuery('#textBox').html(),
                 createdAt: new Date()
             }
-            Meteor.call("diary.insert", obj, function(e,s){
+            Meteor.call("diary.update", this.diarys[0]._id, obj, function(e,s){
                 location.href = "/#/diary"
             });
         }
     },
     mounted(){
-
+        this.title = this.diarys[0].title;
+        jQuery('#textBox').html(this.diarys[0].content);
+    },
+    meteor: {
+        $subscribe: {
+            'diarys': []
+        },
+        diarys(){
+            return DiaryCollection.find({_id: this.$route.params.id}).fetch();
+        }
     }
 }
 </script>
