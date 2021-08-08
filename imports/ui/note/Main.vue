@@ -39,7 +39,7 @@ export default {
             'notes': []
         },
         notes(){
-            return NotesCollection.find({ delete: { $ne: true }}).fetch();
+            return NotesCollection.find({ delete: { $ne: true }},  { sort: { createdAt: -1 } }).fetch();
         }
     }
 }

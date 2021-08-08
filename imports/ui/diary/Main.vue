@@ -37,7 +37,7 @@ export default {
             'diarys': []
         },
         diarys(){
-            return DiaryCollection.find({}).fetch();
+            return DiaryCollection.find({}, { sort: { createdAt: -1 } }).fetch();
         }
     }
 }

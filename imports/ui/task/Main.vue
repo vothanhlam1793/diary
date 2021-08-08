@@ -59,7 +59,7 @@ export default {
             'tasks': []
         },
         tasks(){
-            return TasksCollection.find({}).fetch();
+            return TasksCollection.find({}, { sort: { createdAt: -1 } }).fetch();
         }
     }
 }
