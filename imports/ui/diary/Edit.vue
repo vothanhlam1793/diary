@@ -77,7 +77,7 @@ export default {
             var obj = {
                 title: this.title,
                 content: jQuery('#textBox').html(),
-                // createdAt: new Date(),
+                createdAt: new Date(),
                 editedAt: new Date(),
             }
             Meteor.call("diary.update", this.diarys[0]._id, obj, function(e,s){
